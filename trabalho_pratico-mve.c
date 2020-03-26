@@ -153,7 +153,7 @@ void adicionaAluno(aluno *baseAlunos, int *numeroAlunos)
 
 }
 
-void adicionaDisciplina(disciplina *baseDisciplina, disciplina novaDisciplina, int *numeroDisciplinas)
+void adicionaDisciplina(disciplina *baseDisciplina, int *numeroDisciplinas)
 {
 
 	disciplina novaDisciplina;
