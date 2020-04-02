@@ -8,10 +8,10 @@
 typedef struct aluno
 {
 
-    char codigo[5];
+    char codigo[6];
     char nome[MAXNOME];
-    char cpf[11];
-    char periodo[6];
+    char cpf[12];
+    char periodo[7];
 
 } aluno;
 
@@ -19,10 +19,10 @@ typedef struct aluno
 typedef struct disciplina
 {
 
-    char codigo[4];
+    char codigo[5];
     char nome[MAXNOME];
     int quantiadeCreditos;
-    char periodo[6];
+    char periodo[5];
 
 } disciplina;
 
@@ -39,7 +39,7 @@ int verificaCPF(char *cpf)
     for(i = '0'; i <= '9'; ++i)
     {
 
-        for(j = 0; j <= 11; ++j)
+        for(j = 0; j < 11; ++j)
         {
             numIguais[j] = i;
         }
@@ -76,7 +76,7 @@ int verificaCPF(char *cpf)
     else
     {
 
-        for(k = 0, t = 11; i < strlen(cpf) - 1; k++, t--)
+        for(k = 0, t = 11; k < strlen(cpf) - 1; k++, t--)
         {
             digito2 += (cpf[k] - 48) * t;
         }
@@ -118,31 +118,67 @@ int isNumeric(char *c)
     return 1;
 }
 
-void adicionaAluno(aluno *baseAlunos, int *numeroAlunos)
+void adicionaAluno(aluno **baseAlunos, int *numeroAlunos)
 {
 
-	aluno novoAluno;
+    aluno novoAluno;
+
+    // adiciona codigo do aluno 
+    while(1){
+
+        printf("\nDigite o código do aluno: "); 
+        scanf("%s", novoAluno.codigo);
+        if(strlen(novoAluno.codigo) != 5)
+        {
+            printf("Código inválido\n");
+        }
+        else
+        {
+            break;
+        }
+    }
     
-    printf("Digite o nome do aluno: ");
+    // adiciona cpf do aluno
+    while(1){
+
+        printf("\nDigite o CPF do aluno: ");
+        scanf(" %s", novoAluno.cpf);
+        if(verificaCPF(novoAluno.cpf) == 0)
+        {
+            printf("CPF inválido\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    // adiciona periodo do aluno
+    while(1){
+
+        printf("\nDigite o período do aluno: ");
+        scanf(" %s", novoAluno.periodo);
+        if(strlen(novoAluno.periodo) != 6)
+        {
+            printf("Período precisa ser da forma XXXX.Y\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    // adiciona nome do aluno
+    printf("\nDigite o nome do aluno: ");
     scanf(" %[^\n]", novoAluno.nome);
-
-    printf("\nDigite o codigo do aluno: ");
-    scanf("%s", novoAluno.codigo);
-
-    printf("\nDigite o cpf do aluno: ");
-    scanf("%s", novoAluno.cpf);
-
-    printf("\nDigite o periodo do aluno: ");
-    scanf("%s", novoAluno.periodo);
-
     *numeroAlunos += 1;
 
-    aluno *novosAlunos = (aluno *)realloc(baseAlunos, *numeroAlunos * sizeof(aluno));
+    aluno *novosAlunos = (aluno *)realloc(*baseAlunos, *numeroAlunos * sizeof(aluno));
 
     if(novosAlunos != NULL)
     {
-        baseAlunos = novosAlunos;
-        baseAlunos[*numeroAlunos - 1] = novoAluno;
+        *baseAlunos = novosAlunos;
+        *baseAlunos[*numeroAlunos - 1] = novoAluno;
         printf("\nNovo aluno adicionado com sucesso!\n\n");
     }
 
@@ -150,33 +186,54 @@ void adicionaAluno(aluno *baseAlunos, int *numeroAlunos)
     {
         printf("\nErro ao adicionar aluno na base de dados\n\n");
     }
-
 }
 
-void adicionaDisciplina(disciplina *baseDisciplina, int *numeroDisciplinas)
+void adicionaDisciplina(disciplina **baseDisciplina, int *numeroDisciplinas)
 {
 
-	disciplina novaDisciplina;
+    disciplina novaDisciplina;
     printf("Digite o nome da disciplina: ");
     scanf(" %[^\n]", novaDisciplina.nome);
 
-    printf("\nDigite o codigo da disciplina: ");
-    scanf("%s", novaDisciplina.codigo);
+    while(1){
 
-    printf("\nDigite a quantidade de creditos da disciplina: ");
+        printf("\nDigite o código da disciplina: ");
+        scanf("%s", novaDisciplina.codigo);
+        if(strlen(novaDisciplina.codigo) != 4)
+        {
+            printf("Código inválido\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    printf("\nDigite a quantidade de créditos da disciplina: ");
     scanf("%d", &novaDisciplina.quantiadeCreditos);
 
-    printf("\nDigite o periodo da disciplina: ");
-    scanf("%s", novaDisciplina.periodo);
+    while(1){
 
-	*numeroDisciplinas += 1;
-	
-    disciplina *novasDisciplinas = (disciplina *)realloc(baseDisciplina, *numeroDisciplinas * sizeof(disciplina));
+        printf("\nDigite o período da disciplina: ");
+        scanf("%s", novaDisciplina.periodo);
+        if(strlen(novaDisciplina.periodo) != 6)
+        {
+            printf("Período precisa ser da forma XXXX.Y\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    *numeroDisciplinas += 1;
+
+    disciplina *novasDisciplinas = (disciplina *)realloc(*baseDisciplina, *numeroDisciplinas * sizeof(disciplina));
 
     if(novasDisciplinas != NULL)
     {
-        baseDisciplina = novasDisciplinas;
-        baseDisciplina[*numeroDisciplinas - 1] = novaDisciplina;
+        *baseDisciplina = novasDisciplinas;
+        *baseDisciplina[*numeroDisciplinas - 1] = novaDisciplina;
         printf("\nNova disciplina adicionada com sucesso!\n\n");
     }
 
@@ -184,6 +241,76 @@ void adicionaDisciplina(disciplina *baseDisciplina, int *numeroDisciplinas)
     {
         printf("\nErro ao adicionar disciplina na base de dados\n\n");
     }
+}
+
+void printAluno (aluno *a){
+
+    printf("%s\n%s\n%s\n", a->nome, a->cpf, a->codigo);
+}
+
+void buscarAluno(aluno *baseAlunos, int numeroAlunos)
+{
+
+    int i, opcao;
+    char cpf[11], nome[60], codigo[5];
+    printf ("\t\t SELECIONE COMO DESEJA FAZER A BUSCA   \n");
+    printf ("\t\t\t================================\n");
+    printf ("\t\t\t|\t                       |\n");
+    printf("\t\t\t|    1 - CPF                   |\n");
+    printf("\t\t\t|    2 - Código                |\n");
+    printf("\t\t\t|    3 - Nome                  |\n");
+    printf ("\t\t\t|                              |\n");
+    printf ("\t\t\t================================\n");
+    printf ("\n\n");
+    printf("\t\t\tPor favor, selecione uma opção: ");
+    scanf("%d", &opcao);
+
+    if(opcao == 1){
+
+        printf ("Digite o CPF do aluno: ");
+        scanf("%s", cpf);
+
+        for (i=0; i < numeroAlunos; i++)
+        {
+            if(strcmp(baseAlunos[i].cpf, cpf) == 0)
+            {
+                printAluno(&baseAlunos[i]);   
+                break;
+            }
+        }
+
+    }
+
+    if(opcao == 2){
+
+        printf ("Digite o código do aluno: ");
+        scanf("%s", codigo);
+
+        for (i=0; i < numeroAlunos; i++)
+        {
+            
+            if(strcmp(baseAlunos[i].codigo, codigo) == 0)
+            {
+                printAluno(&baseAlunos[i]);   
+                break;
+            }
+        }
+    }
+
+    if(opcao == 3){
+
+        printf ("Digite o nome do aluno: ");
+        scanf(" %[^\n]", nome);
+        for (i=0; i < numeroAlunos; i++)
+        {
+            if(strcmp(baseAlunos[i].nome, nome) == 0)
+            {
+                printAluno(&baseAlunos[i]);   
+                break;
+            }
+        }
+    }
+    return;
 }
 
 int main()
@@ -196,18 +323,36 @@ int main()
     aluno *baseAlunos = NULL;
     disciplina *baseDisciplina = NULL;
 
-    printf("SISTEMA DE CONTROLE DE DISCIPLINAS E ALUNOS\n\n");
+    printf("\n\n");
 
     do
     {
-        printf("Digite (1) para consultar (2) para adicionar (3) para remover ou outro número para sair: ");
+        printf ("\t\t SISTEMA DE CONTROLE DE DISCIPLINAS E ALUNOS\n");
+        printf ("\t\t\t================================\n");
+        printf ("\t\t\t|\t                       |\n");
+        printf("\t\t\t|    1 - Consultar             |\n");
+        printf("\t\t\t|    2 - Adicionar             |\n");
+        printf("\t\t\t|    3 - Remover               |\n");
+        printf("\t\t\t|    0 - Sair                  |\n");
+        printf ("\t\t\t|                              |\n");
+        printf ("\t\t\t================================\n");
+        printf ("\n\n");
+        printf("\t\t\tPor favor, selecione uma opção: ");
         scanf("%d", &opcaoMenu);
-
+        printf ("\n\n");
         // se a opcao nao e invalida
         if ((opcaoMenu == 1) || (opcaoMenu == 2) || (opcaoMenu == 3))
         {
-
-            printf("Digite (1) para aluno (2) para disciplina ou outro para voltar: ");
+            printf ("\t\t SELECIONE UMA OPÇÃO PARA ADICIONAR OU VOLTAR\n");
+            printf ("\t\t\t================================\n");
+            printf ("\t\t\t|\t                       |\n");
+            printf("\t\t\t|    1 - Aluno                 |\n");
+            printf("\t\t\t|    2 - Disciplina            |\n");
+            printf("\t\t\t|    3 - Voltar                |\n");
+            printf ("\t\t\t|                              |\n");
+            printf ("\t\t\t================================\n");
+            printf ("\n\n");
+            printf("\t\t\tPor favor, selecione uma opção: ");
             scanf("%d", &opcaoObjeto);
             printf("\n\n");
 
@@ -215,24 +360,25 @@ int main()
             if((opcaoObjeto == 1) || (opcaoObjeto == 2))
             {
 
-            	// consultar
+                // consultar
                 if(opcaoMenu == 1)
                 {
+                    buscarAluno(baseAlunos, numeroAlunos);
                 }
 
                 // adicionar
                 else if(opcaoMenu == 2)
                 {
-                	// aluno
+                    // aluno
                     if(opcaoObjeto == 1)
                     {
-                        adicionaAluno(baseAlunos, &numeroAlunos);
+                        adicionaAluno(&baseAlunos, &numeroAlunos);
                     }
 
                     // disciplina
                     else
                     {
-                        adicionaDisciplina(baseDisciplina, &numeroDisciplinas);
+                        adicionaDisciplina(&baseDisciplina, &numeroDisciplinas);
                     }
 
                 }
