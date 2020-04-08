@@ -90,3 +90,71 @@ int isNumeric(char *c) //ok
 
     return 1;
 }
+
+int getCodigoAluno(){
+
+	int codigo;
+
+	 while(1)
+    {
+
+        printf("\nDigite o codigo do aluno: ");
+        while ((getchar()) != '\n');
+        scanf("%d", &codigo);
+        if(codigo >= 1000000 || codigo <= 9999)
+        {
+            printf("Codigo invalido, o codigo possui 5 digitos\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return codigo;
+}
+
+int getPeriodoAluno(){
+
+	int nomePeriodo, posicaoPeriodo;
+
+	while(1)
+	{
+	    printf("\nDigite o periodo em que o aluno se encontra: ");
+	    while ((getchar()) != '\n');
+	    scanf("%d", &nomePeriodo);
+	    posicaoPeriodo = buscaPeriodo(nomePeriodo);
+	    if(posicaoPeriodo == -1)
+	    {
+	        printf("Periodo nao encontrado\n\n");
+	    }
+	    else
+	    {
+	        break;
+	    }
+	}
+
+	return nomePeriodo;
+}
+
+int getCodigoDisciplina(){
+
+	int codigoDis;
+
+	while(1)
+    {
+        printf("\nDigite o codigo da disciplina: ");
+        while ((getchar()) != '\n');
+        scanf("%d", &codigoDis);
+        if(codigoDis >= 100000 || codigoDis <=  999)
+        {
+            printf("Codigo invalido, o codigo deve ter quatro digitos\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return codigoDis;
+}
