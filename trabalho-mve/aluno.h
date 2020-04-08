@@ -35,6 +35,7 @@ void adicionaAlunoMenu() //ok
     char cpf[12], nome[MAXNOME];
 
     nomePeriodo = getPeriodoAluno();
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 
@@ -93,6 +94,7 @@ void buscaAluno() //ok
     Al.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 
@@ -124,6 +126,7 @@ void removeAlunoMenu()
     seraRemovido.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 
@@ -167,6 +170,7 @@ void vinculaAlunoMenu()
     Dis.codigoDis = 0;
 
     nomePeriodo = getPeriodoAluno();
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 
@@ -216,6 +220,7 @@ void desvinculaAlunoMenu()
     Al.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 

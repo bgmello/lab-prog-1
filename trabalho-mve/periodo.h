@@ -41,7 +41,6 @@ void adicionaPeriodoMenu() //ok
     {
         printf("Digite o periodo desejado (por exemplo: 20201): ");
         scanf("%d", &nomePeriodo);
-        printf("%d", nomePeriodo);
         if(nomePeriodo >= 1000000 || nomePeriodo <= 9999)
         {
             printf("Periodo invalido, tente novamente\n\n");
