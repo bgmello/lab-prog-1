@@ -6,6 +6,7 @@
 #include "estrutura.h"
 
 // variaveis globais
+FILE *fpAluno, *fpDisciplina;
 periodo *basePeriodo = NULL;
 int numeroDePeriodos = 0;
 
@@ -15,11 +16,56 @@ int numeroDePeriodos = 0;
 #include "aluno.h"
 #include "disciplina.h"
 
+int isEmpty(FILE *file){
+    long savedOffset = ftell(file);
+    fseek(file, 0, SEEK_END);
+
+    if (ftell(file) == 0){
+        return 1;
+    }
+
+    fseek(file, savedOffset, SEEK_SET);
+    return 0;
+}
+
+void writeBase(){
+
+    int i,j,r;
+
+    if(isEmpty(fpAluno)){
+        fprintf(fpAluno, "periodo,codigoAluno,nomeAluno,cpf,codigoDisciplina\n");
+    }
+
+    if(isEmpty(fpDisciplina)){
+        fprintf(fpDisciplina, "periodo,codigoDisciplina,nomeDisciplina,nomeProfessor,quantidadeCreditos\n");
+    }
+
+    for(i=0;i<numeroDePeriodos;i++){
+        for(j=0;j<basePeriodo[i].numeroDeAlunos;j++){
+            for(r=0;r<basePeriodo[i].baseAlunos[j].numeroDeDisciplinas;r++){
+                fprintf(fpAluno, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseAlunos[j].codigoAl, basePeriodo[i].baseAlunos[j].nome, basePeriodo[i].baseAlunos[j].cpf, basePeriodo[i].baseAlunos[j].listaCodigosDis[r]);
+            }
+        }
+    }
+
+    for(i=0;i<numeroDePeriodos;i++){
+        for(j=0;j<basePeriodo[i].numeroDeDisciplinas;j++){
+            fprintf(fpDisciplina, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseDisciplinas[j].codigoDis, basePeriodo[i].baseDisciplinas[j].nome, basePeriodo[i].baseDisciplinas[j].professor, basePeriodo[i].baseDisciplinas[j].quantidadeCreditos);
+        }
+    }
+}
+
 int main()
 {
 
     int opcaoMenu, opcaoObjeto = 1;
-
+    fpAluno = fopen("baseAluno.csv", "a");
+    fpDisciplina = fopen("baseDiscilina.csv", "a");
+    if(fpAluno==NULL || fpDisciplina==NULL){
+        printf("Erro ao abrir arquivos");
+        return 0;
+    }
+    
     printf("\n\n");
     do
     {
@@ -88,7 +134,13 @@ int main()
     }
     while((opcaoMenu == 1) || (opcaoMenu == 2) || (opcaoMenu == 3) || (opcaoMenu == 4));
 
-    printf("Aplicacao terminada\n");
+    writeBase();
+    fclose(fpAluno);
+    fclose(fpDisciplina);
 
+    printf("Aplicacao terminada, dados escritos com sucesso!\n");
+
+    
+    
     return 0;
 }
