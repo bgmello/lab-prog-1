@@ -30,12 +30,11 @@ int adicionaAluno(int nomePeriodo, int codigoAl, int numeroDeDisciplinas, char c
 
 void adicionaAlunoMenu() //ok
 {
-    int i, nomePeriodo, posicaoPeriodo, codigoAl, numeroDeDisciplinas, codigoDis, ok;
+    int i, nomePeriodo, codigoAl, numeroDeDisciplinas, codigoDis, ok;
     int *listaCodigosDis;
     char cpf[12], nome[MAXNOME];
 
     nomePeriodo = getPeriodoAluno();
-    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
 

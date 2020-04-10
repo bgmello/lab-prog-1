@@ -76,21 +76,6 @@ int verificaCPF(char *cpf) //ok
     return 1;
 }
 
-int isNumeric(char *c) //ok
-{
-
-    for(int i = 0; i < strlen(c); i++)
-    {
-
-        if(c[i] < '0' || c[i] > '9')
-        {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
 int getCodigoAluno(){
 
 	int codigo;
