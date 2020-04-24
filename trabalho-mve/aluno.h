@@ -1,4 +1,50 @@
 
+void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[]){
+
+    int i, posicaoPeriodo, posicaoAluno;
+
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
+
+    for(i = 0; i < basePeriodo[posicaoPeriodo].numeroDeAlunos; ++i)
+    {
+        if(basePeriodo[posicaoPeriodo].baseAlunos[i].codigoAl == codigoAl)
+        {
+            return;
+        }
+    }
+
+    basePeriodo[posicaoPeriodo].baseAlunos = (aluno *)realloc(basePeriodo[posicaoPeriodo].baseAlunos, (basePeriodo[posicaoPeriodo].numeroDeAlunos + 1) * sizeof(aluno));
+    posicaoAluno = basePeriodo[posicaoPeriodo].numeroDeAlunos++;
+    strcpy(basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].nome, nome);
+    strcpy(basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].cpf, cpf);
+    basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].codigoAl = codigoAl;
+    basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].numeroDeDisciplinas = 0;
+    basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].listaCodigosDis = (int *)malloc(0 * sizeof(int));
+    return;
+
+}
+
+void addDisciplinaInAluno(int nomePeriodo, int codigoAl, int codigoDis){
+    int i, posicaoPeriodo, posicaoAluno;
+
+    posicaoPeriodo = buscaPeriodo(nomePeriodo);
+
+    for(i = 0; i < basePeriodo[posicaoPeriodo].numeroDeAlunos; ++i)
+    {
+        if(basePeriodo[posicaoPeriodo].baseAlunos[i].codigoAl == codigoAl)
+        {
+            posicaoAluno = i;
+            basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].numeroDeDisciplinas++;
+            basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].listaCodigosDis = (int *)realloc(basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].listaCodigosDis, basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].numeroDeDisciplinas * sizeof(int));
+            basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].listaCodigosDis[basePeriodo[posicaoPeriodo].baseAlunos[posicaoAluno].numeroDeDisciplinas-1] = codigoDis;
+            break;
+        }
+    }
+
+    return;
+}
+
+
 int adicionaAluno(int nomePeriodo, int codigoAl, int numeroDeDisciplinas, char cpf[], char nome[], int listaCodigosDis[]) //ok
 {
     int i, posicaoPeriodo, posicaoAluno;
