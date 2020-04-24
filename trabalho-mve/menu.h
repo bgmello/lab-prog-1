@@ -1,7 +1,11 @@
 
 int menuInicial () 
 {
-	
+	/**
+	 * Função que mostra as opções iniciais do programa ao usuario
+	 * @return a opção escolhida
+	 */
+	 
 	int opcaoMenu;
 	printf ("\t\t SISTEMA DE CONTROLE DE DISCIPLINAS E ALUNOS\n");
     printf ("\t\t\t================================\n");
@@ -22,6 +26,11 @@ int menuInicial ()
 
 int menuConsultar ()
 {
+	/**
+	 * Função que mostra as opções de consulta ao usuario
+	 * @return a opção escolhida
+	 */
+	
 	int opcaoObjeto;
 	
 	printf ("\t\t        SELECIONE UMA DAS OPCOES    \n");
@@ -40,6 +49,11 @@ int menuConsultar ()
 
 int menuAdicionar ()
 {
+	/**
+	 * Função que mostra as opções de que podem ser adicionadas ao usuario
+	 * @return a opção escolhida
+	 */
+	
 	int opcaoObjeto;
 	
 	printf ("\t\t        SELECIONE UMA DAS OPCOES    \n");
@@ -59,6 +73,11 @@ int menuAdicionar ()
 
 int menuVincularDesvincular()
 {
+	/**
+	 * Função que mostra as opções para vincular e desvincular disciplina ao usuario
+	 * @return a opção escolhida
+	 */
+	
 	int opcaoObjeto;
 	
 	printf ("\t\t        SELECIONE UMA DAS OPCOES    \n");
@@ -75,8 +94,13 @@ int menuVincularDesvincular()
 	return opcaoObjeto;
 }
 
-void printAluno(aluno a) //ok
+void printAluno(aluno a)
 {
+	/**
+	 * Função que printa as informações de um aluno
+	 * @param struct aluno a ser printado
+	 */
+	
 	int i;
 	printf("Nome: %s\nCPF: %s\nNumero de Disciplinas: %d\n", a.nome, a.cpf, a.numeroDeDisciplinas);
 	printf("Disciplinas em que o aluno esta inscrito\n");

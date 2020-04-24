@@ -1,6 +1,10 @@
 
-void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[]){
-
+void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[])
+{
+	/**
+	 * Função que cria um aluno com uma lista vazia de disciplinas
+	 * @param int nome do período, int código do aluno, int quantidade de créditos, char cpf
+	 */
     int i, posicaoPeriodo, posicaoAluno;
 
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
@@ -24,7 +28,13 @@ void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[]){
 
 }
 
-void addDisciplinaInAluno(int nomePeriodo, int codigoAl, int codigoDis){
+void addDisciplinaInAluno(int nomePeriodo, int codigoAl, int codigoDis)
+{
+	/**
+	 * Função responsável por adicionar uma disciplina a um aluno
+	 * @param int nome do período, int código do aluno, int código da disciplina
+	 */
+	 
     int i, posicaoPeriodo, posicaoAluno;
 
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
@@ -45,8 +55,14 @@ void addDisciplinaInAluno(int nomePeriodo, int codigoAl, int codigoDis){
 }
 
 
-int adicionaAluno(int nomePeriodo, int codigoAl, int numeroDeDisciplinas, char cpf[], char nome[], int listaCodigosDis[]) //ok
+int adicionaAluno(int nomePeriodo, int codigoAl, int numeroDeDisciplinas, char cpf[], char nome[], int listaCodigosDis[])
 {
+	/**
+	 * Função que adiciona um aluno a base
+	 * @param int nome do período, int código do aluno, int quantidade de créditos, char cpf
+	 * @return 1 caso o aluno já existe, 0 caso seja adicionado
+	 */
+	 
     int i, posicaoPeriodo, posicaoAluno;
 
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
@@ -76,6 +92,10 @@ int adicionaAluno(int nomePeriodo, int codigoAl, int numeroDeDisciplinas, char c
 
 void adicionaAlunoMenu() //ok
 {
+	/**
+	 * Função lê os dados necessários para que um aluno seja adicionado
+	 */
+	
     int i, nomePeriodo, codigoAl, numeroDeDisciplinas, codigoDis, ok;
     int *listaCodigosDis;
     char cpf[12], nome[MAXNOME];
@@ -132,8 +152,12 @@ void adicionaAlunoMenu() //ok
     return;
 }
 
-void buscaAluno() //ok
+void buscaAluno()
 {
+	/**
+	 * Função que busca um aluno na base de dados e printa suas informações caso ele seja encontrado
+	 */
+	 
     int i, codigoAl, nomePeriodo, posicaoPeriodo;
     aluno Al;
     Al.codigoAl = 0;
@@ -164,6 +188,11 @@ void buscaAluno() //ok
 
 void removeAlunoMenu()
 {
+	
+	/**
+	 * Função responsável por remover um aluno da base de dados
+	 */
+	 
     int i, codigoAl, nomePeriodo, posicaoPeriodo, posUltimoAl, posRemovido;
 
     aluno seraRemovido, ultimoAl;
@@ -208,6 +237,10 @@ void removeAlunoMenu()
 
 void vinculaAlunoMenu()
 {
+	/**
+	 * Função responsável por vincular um aluno a uma disciplina
+	 */
+	
     int i, nomePeriodo, codigoAl, codigoDis, posicaoPeriodo, posicaoAluno;
     aluno Al;
     Al.codigoAl = 0;
@@ -260,6 +293,10 @@ void vinculaAlunoMenu()
 
 void desvinculaAlunoMenu()
 {
+	/**
+	 * Função responsável por desvincular um aluno a uma disciplina
+	 */
+	
     int i, nomePeriodo, codigoAl, codigoDis, posicaoPeriodo, posicaoAluno, posicaoDisciplina = - 1, posUltimaDis;
     aluno Al;
     Al.codigoAl = 0;

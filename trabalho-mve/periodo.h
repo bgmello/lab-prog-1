@@ -1,7 +1,12 @@
 
-
-int buscaPeriodo(int nomePeriodo) // ok
+int buscaPeriodo(int nomePeriodo)
 {
+	/**
+	 * Função que procura a posição do período dentro da base
+	 * @param int nome do período
+	 * @return a posição do período dentro da base caso ele exista, -1 caso contrário
+	 */
+	 
     int i;
     for(i = 0; i < numeroDePeriodos; ++i)
     {
@@ -13,8 +18,13 @@ int buscaPeriodo(int nomePeriodo) // ok
     return -1;
 }
 
-int adicionaPeriodo(int nomePeriodo) // ok
+int adicionaPeriodo(int nomePeriodo)
 {
+	/**
+	 * Função que adiciona um novo período
+	 * @param int nome do período
+	 * @return 0 caso o período seja adicionado, -1 caso contrário
+	 */
 
     if(buscaPeriodo(nomePeriodo) != -1)
     {
@@ -32,8 +42,12 @@ int adicionaPeriodo(int nomePeriodo) // ok
     return 0;
 }
 
-void adicionaPeriodoMenu() //ok
+void adicionaPeriodoMenu()
 {
+	/**
+	 * Função respónsavel por ler o nome do período para que este seja adicionado
+	 */
+	 
     int ok;
     int nomePeriodo;
 

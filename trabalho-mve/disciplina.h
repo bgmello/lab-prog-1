@@ -1,6 +1,12 @@
 
-int adicionaDisciplina(int nomePeriodo, int codigoDis, int quantidadeCreditos, char nome[], char professor[]) //ok
+int adicionaDisciplina(int nomePeriodo, int codigoDis, int quantidadeCreditos, char nome[], char professor[]) 
 {
+	/**
+	 * Função que adiciona um nova disciplina
+	 * @param int nome do período, int código da disciplina, int quantidade de créditos, char nome e char professor
+	 * @return 0 caso a disciplina seja adicionada, -1 caso contrário
+	 */
+	
     int i, posicaoPeriodo, posicaoDisciplina;
 
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
@@ -24,6 +30,10 @@ int adicionaDisciplina(int nomePeriodo, int codigoDis, int quantidadeCreditos, c
 
 void adicionaDisciplinaMenu() //ok
 {
+	/**
+	 * Função respónsavel por ler as variaveis da nova disciplina a ser adicionada
+	 */
+	
     int nomePeriodo, posicaoPeriodo, quantidadeCreditos, codigoDis, ok;
     char professor[MAXNOME], nome[MAXNOME];
 
@@ -65,8 +75,12 @@ void adicionaDisciplinaMenu() //ok
     return;
 }
 
-void buscarDisciplina() //ok
+void buscarDisciplina()
 {
+	/**
+	 * Função que busca uma disciplina e printa os dados dela caso ela exista
+	 */
+	
     int i, j, codigoDis, nomePeriodo, posicaoPeriodo;
     disciplina Dis;
     Dis.codigoDis = 0;
@@ -124,6 +138,10 @@ void buscarDisciplina() //ok
 
 void removeDisciplinaMenu()
 {
+	/**
+	 * Função responsável por remover uma disciplina da base de dados
+	 */
+	
     int i, codigoDis, nomePeriodo, posicaoPeriodo, posUltimaDis, posRemovida;
 
     disciplina seraRemovida, ultimaDis;

@@ -1,6 +1,11 @@
 
 int verificaCPF(char *cpf) //ok
-{
+{	
+	/**
+	 * Função que checa se o CPF é válido
+	 * @param char cpf a ser verificado
+	 * @return 1 se o CPF é válido, 0 caso contrário
+	 */
 
     int j, k, t, digito1 = 0, digito2 = 0;
     char numIguais[11], i;
@@ -78,6 +83,11 @@ int verificaCPF(char *cpf) //ok
 
 int getCodigoAluno(){
 
+	 /**
+	 * Função que lê o código do aluno e verifica se ele tem 5 digitos
+	 * @return Código do aluno
+	 */	
+	 
 	int codigo;
 
 	 while(1)
@@ -100,6 +110,11 @@ int getCodigoAluno(){
 }
 
 int getPeriodoAluno(){
+	
+	 /**
+	 * Função que lê o periodo e verifica se ele já existe
+	 * @return Nome do período
+	 */	
 
 	int nomePeriodo, posicaoPeriodo;
 
@@ -123,6 +138,11 @@ int getPeriodoAluno(){
 }
 
 int getCodigoDisciplina(){
+	
+	 /**
+	 * Função que lê o código da disciplina e verifica se ela tem 4 digitos
+	 * @return Código da disciplina
+	 */	
 
 	int codigoDis;
 
