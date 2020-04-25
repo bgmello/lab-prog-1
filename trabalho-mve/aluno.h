@@ -2,9 +2,13 @@
 void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[])
 {
 	/**
-	 * Função que cria um aluno com uma lista vazia de disciplinas
-	 * @param int nome do período, int código do aluno, int quantidade de créditos, char cpf
+	 * Cria um aluno com uma lista vazia de disciplinas
+	 * @param int nomePeríodo Nome do periodo em que o aluno vai ser criado
+     * @param int codigoAl Codigo do aluno a ser criado
+     * @param char cpf[] CPF do aluno a ser criado, obrigatoriamente tem 11 digitos
+     * @param char nome[] Nome do aluno a ser criado
 	 */
+
     int i, posicaoPeriodo, posicaoAluno;
 
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
@@ -31,8 +35,10 @@ void createAluno(int nomePeriodo, int codigoAl, char cpf[], char nome[])
 void addDisciplinaInAluno(int nomePeriodo, int codigoAl, int codigoDis)
 {
 	/**
-	 * Função responsável por adicionar uma disciplina a um aluno
-	 * @param int nome do período, int código do aluno, int código da disciplina
+	 * Adiciona uma disciplina a um aluno
+	 * @param int nomePeriodo Nome do periodo a que a disciplina sera adiconada ao aluno
+     * @param int codigoAl Codigo do aluno em que a displina sera adiconada
+     * @param int codigoDis Codigo da disciplina
 	 */
 	 
     int i, posicaoPeriodo, posicaoAluno;
@@ -102,6 +108,10 @@ void adicionaAlunoMenu() //ok
 
     nomePeriodo = getPeriodoAluno();
 
+    if(nomePeriodo==0){
+        return;
+    }
+
     codigoAl = getCodigoAluno();
 
     while(1)
@@ -163,6 +173,11 @@ void buscaAluno()
     Al.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+
+    if(nomePeriodo==0){
+        return;
+    }
+
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
@@ -200,6 +215,11 @@ void removeAlunoMenu()
     seraRemovido.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+
+    if(nomePeriodo==0){
+        return;
+    }
+
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
@@ -248,6 +268,11 @@ void vinculaAlunoMenu()
     Dis.codigoDis = 0;
 
     nomePeriodo = getPeriodoAluno();
+
+    if(nomePeriodo==0){
+        return;
+    }
+
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();
@@ -302,6 +327,11 @@ void desvinculaAlunoMenu()
     Al.codigoAl = 0;
 
     nomePeriodo = getPeriodoAluno();
+
+    if(nomePeriodo==0){
+        return;
+    }
+
     posicaoPeriodo = buscaPeriodo(nomePeriodo);
 
     codigoAl = getCodigoAluno();

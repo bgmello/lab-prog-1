@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #define MAXNOME 60
 #define MAXLINE 200
 
 #include "estrutura.h"
 
 // variaveis globais
-FILE *fpAluno, *fpDisciplina;
+FILE *fpAlunoRead, *fpAlunoWrite, *fpDisciplinaRead, *fpDisciplinaWrite;
 periodo *basePeriodo = NULL;
 int numeroDePeriodos = 0;
 
@@ -23,15 +24,22 @@ int main()
 {
 
     int opcaoMenu, opcaoObjeto = 1;
-    fpAluno = fopen("baseAluno.csv", "a+");
-    fpDisciplina = fopen("baseDiscilina.csv", "a+");
 
-    if(fpAluno==NULL || fpDisciplina==NULL){
-        printf("Erro ao abrir arquivos");
-        return 0;
+    explicacaoInicial();
+    
+    // Se os arquivos existem
+    if(access("baseAluno.csv", F_OK)!=-1 && access("baseDisciplina.csv", F_OK)!=-1){
+        fpAlunoRead = fopen("baseAluno.csv", "r");
+        fpDisciplinaRead = fopen("baseDisciplina.csv", "r");
+
+        if(fpAlunoRead==NULL || fpDisciplinaRead==NULL){
+            printf("Erro ao abrir arquivos");
+            return 0;
+        }
+        readBaseAluno();
+        readBaseDisciplina();
+
     }
-    readBaseAluno();
-    readBaseDisciplina();
     printf("\n\n");
     do
     {
@@ -100,9 +108,19 @@ int main()
     }
     while((opcaoMenu == 1) || (opcaoMenu == 2) || (opcaoMenu == 3) || (opcaoMenu == 4));
 
+
+    if(access("baseAluno.csv", F_OK)!=-1 && access("baseDisciplina.csv", F_OK)!=-1){
+        fclose(fpAlunoRead);
+        fclose(fpDisciplinaRead);
+    }   
+
+    fpAlunoWrite = fopen("baseAluno.csv", "w");
+    fpDisciplinaWrite = fopen("baseDisciplina.csv", "w");
+
     writeBase();
-    fclose(fpAluno);
-    fclose(fpDisciplina);
+
+    fclose(fpAlunoWrite);
+    fclose(fpDisciplinaWrite);
 
     printf("Aplicacao terminada, dados escritos com sucesso!\n");
 

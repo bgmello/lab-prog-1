@@ -120,9 +120,14 @@ int getPeriodoAluno(){
 
 	while(1)
 	{
-	    printf("\nDigite o periodo em que o aluno se encontra: ");
+	    printf("\nDigite o periodo em que o aluno se encontra (para voltar ao menu incial digite 0): ");
 	    while ((getchar()) != '\n');
 	    scanf("%d", &nomePeriodo);
+
+        if(nomePeriodo==0){
+            return nomePeriodo;
+        }
+
 	    posicaoPeriodo = buscaPeriodo(nomePeriodo);
 	    if(posicaoPeriodo == -1)
 	    {
@@ -151,7 +156,7 @@ int getCodigoDisciplina(){
         printf("\nDigite o codigo da disciplina: ");
         while ((getchar()) != '\n');
         scanf("%d", &codigoDis);
-        if(codigoDis >= 100000 || codigoDis <=  999)
+        if(codigoDis >= 10000 || codigoDis <=  999)
         {
             printf("Codigo invalido, o codigo deve ter quatro digitos\n");
         }

@@ -39,9 +39,12 @@ void adicionaDisciplinaMenu() //ok
 
     while(1)
     {
-        printf("Digite o periodo: ");
+        printf("Digite o periodo (para voltar ao menu incial digite 0): ");
         while ((getchar()) != '\n');
         scanf("%d", &nomePeriodo);
+
+        if(nomePeriodo==0)return;
+        
         posicaoPeriodo = buscaPeriodo(nomePeriodo);
         if(posicaoPeriodo == -1)
         {
@@ -88,9 +91,12 @@ void buscarDisciplina()
 
     while(1)
     {
-        printf("Digite o periodo: ");
+        printf("Digite o periodo (para voltar ao menu incial digite 0): ");
         while ((getchar()) != '\n');
         scanf("%d", &nomePeriodo);
+
+        if(nomePeriodo==0)return;
+
         posicaoPeriodo = buscaPeriodo(nomePeriodo);
         if(posicaoPeriodo == -1)
         {
@@ -150,8 +156,12 @@ void removeDisciplinaMenu()
 
     while(1)
     {
-        printf("\nDigite o periodo: ");
+        printf("Digite o periodo (para voltar ao menu incial digite 0): ");
+        while ((getchar()) != '\n');
         scanf("%d", &nomePeriodo);
+
+        if(nomePeriodo==0)return;
+        
         posicaoPeriodo = buscaPeriodo(nomePeriodo);
         if(posicaoPeriodo == -1)
         {

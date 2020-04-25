@@ -26,25 +26,25 @@ void writeBase(){
 	
     int i,j,r;
 
-    if(isEmpty(fpAluno)){
-        fprintf(fpAluno, "periodo,codigoAluno,nomeAluno,cpf,codigoDisciplina\n");
+    if(isEmpty(fpAlunoWrite)){
+        fprintf(fpAlunoWrite, "periodo,codigoAluno,nomeAluno,cpf,codigoDisciplina\n");
     }
 
-    if(isEmpty(fpDisciplina)){
-        fprintf(fpDisciplina, "periodo,codigoDisciplina,nomeDisciplina,nomeProfessor,quantidadeCreditos\n");
+    if(isEmpty(fpDisciplinaWrite)){
+        fprintf(fpDisciplinaWrite, "periodo,codigoDisciplina,nomeDisciplina,nomeProfessor,quantidadeCreditos\n");
     }
 
     for(i=0;i<numeroDePeriodos;i++){
         for(j=0;j<basePeriodo[i].numeroDeAlunos;j++){
             for(r=0;r<basePeriodo[i].baseAlunos[j].numeroDeDisciplinas;r++){
-                fprintf(fpAluno, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseAlunos[j].codigoAl, basePeriodo[i].baseAlunos[j].nome, basePeriodo[i].baseAlunos[j].cpf, basePeriodo[i].baseAlunos[j].listaCodigosDis[r]);
+                fprintf(fpAlunoWrite, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseAlunos[j].codigoAl, basePeriodo[i].baseAlunos[j].nome, basePeriodo[i].baseAlunos[j].cpf, basePeriodo[i].baseAlunos[j].listaCodigosDis[r]);
             }
         }
     }
 
     for(i=0;i<numeroDePeriodos;i++){
         for(j=0;j<basePeriodo[i].numeroDeDisciplinas;j++){
-            fprintf(fpDisciplina, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseDisciplinas[j].codigoDis, basePeriodo[i].baseDisciplinas[j].nome, basePeriodo[i].baseDisciplinas[j].professor, basePeriodo[i].baseDisciplinas[j].quantidadeCreditos);
+            fprintf(fpDisciplinaWrite, "%d,%d,%s,%s,%d\n", basePeriodo[i].nomePeriodo, basePeriodo[i].baseDisciplinas[j].codigoDis, basePeriodo[i].baseDisciplinas[j].nome, basePeriodo[i].baseDisciplinas[j].professor, basePeriodo[i].baseDisciplinas[j].quantidadeCreditos);
         }
     }
 }
@@ -62,12 +62,12 @@ void readBaseAluno(){
     int codigoDisciplina;
     aluno novoAluno;
 
-    if(!isEmpty(fpAluno)){
+    if(!isEmpty(fpAlunoRead)){
 
         //le o cabecalho
-        fgets(line, sizeof(line), fpAluno);
+        fgets(line, sizeof(line), fpAlunoRead);
 
-        while (fgets(line, sizeof(line), fpAluno)) {
+        while (fgets(line, sizeof(line), fpAlunoRead)) {
 
             token = strtok(line, seps);
             sscanf (token, "%d", &nomePeriodo);
@@ -88,6 +88,8 @@ void readBaseAluno(){
         }
 
     }
+
+    printf("Base de dados de alunos lida com sucesso\n");
 }
 
 void readBaseDisciplina(){
@@ -103,12 +105,12 @@ void readBaseDisciplina(){
     int codigoDisciplina;
     disciplina novaDisciplina;
 
-    if(!isEmpty(fpDisciplina)){
+    if(!isEmpty(fpDisciplinaRead)){
 
         //le o cabecalho
-        fgets(line, sizeof(line), fpDisciplina);
+        fgets(line, sizeof(line), fpDisciplinaRead);
 
-        while (fgets(line, sizeof(line), fpDisciplina)) {
+        while (fgets(line, sizeof(line), fpDisciplinaRead)) {
 
             token = strtok(line, seps);
             sscanf (token, "%d", &nomePeriodo);
@@ -128,4 +130,6 @@ void readBaseDisciplina(){
         }
 
     }
+
+    printf("Base de dados de disciplinas lida com sucesso\n");
 }
