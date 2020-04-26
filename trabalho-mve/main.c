@@ -1,3 +1,11 @@
+/*
+ * Escrito por:
+ * Guilherme C. de Sá Menezes (18410)
+ * Bruno Gorrensen Mello (18404)
+ * Utilizando Geany 1.36 e Vim 8.2 no Windows 10 e Linux 18.04
+ * 26/04/2020
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
