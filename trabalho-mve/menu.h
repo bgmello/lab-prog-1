@@ -1,5 +1,9 @@
 
 void explicacaoInicial(){
+	/**
+	 * Função que mostra orientações ao usuario
+	 */
+	 
 	printf("\t\tBem vindo ao sistema de controle de disciplinas e alunos!\n");
 	printf("\t\tAqui podemos guardar informacoes dos alunos e disciplinas em diversos periodos diferentes\n");
 	printf("\t\tNosso sistema e composto de 3 partes principais: os alunos, as disciplinas e os periodos\n");
@@ -8,6 +12,8 @@ void explicacaoInicial(){
 	printf("\t\tPara consultar as informacoes de uma disciplina e os alunos inscritos, basta ir ao menu de consultar e digitar o periodo e o codigo da disciplina\n");
 	printf("\t\tPara consultar as informacoes de um aluno e as disciplinas que ele esta inscrito, basta ir ao menu consultar e digitar o periodo e o codigo do aluno\n");
 	printf("\t\tE importante notar que cada disciplina e cada aluno estao dentro de um periodo, logo podemos criar varias disciplinas e varios alunos iguais mas em periodos diferentes!\n");
+	printf("\t\tSe for necessario adicionar um aluno ou uma disciplina em um periodo que ainda nao foi criado, e nececessario cria-lo antes\n");
+	printf("\t\tO periodo deve ser inserido da forma XXXXX, por exemplo, o periodo 2020.1 deve ser inserido como 20201\n");
 	printf("\n\n");
 }
 
